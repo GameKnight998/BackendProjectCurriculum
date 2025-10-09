@@ -5,9 +5,9 @@ Follow the instructions in README.md to practice Git commands with this file.
 ## Instructions
 
 1. Add your name below:
-Name:
+Name: Gordon
 
-2. Add your favorite programming language:
-Favorite Language:
+2. Add your favorite programming language: python
+Favorite Language: english
 
 3. Commit your changes with descriptive messages!
