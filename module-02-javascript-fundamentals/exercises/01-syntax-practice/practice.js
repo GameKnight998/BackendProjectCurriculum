@@ -9,7 +9,7 @@
 // Use template literals (backticks)
 // Example: greet("Alex", 15) should return "Hello, Alex! You are 15 years old."
 const greet = (name, age) => {
-  // Your code here
+  return "Hello," + name + "! You are" + age + " years old"
 };
 
 // ========================================
@@ -18,13 +18,13 @@ const greet = (name, age) => {
 
 // TODO: Create a function that calculates the area of a rectangle
 const calculateArea = (width, height) => {
-  // Your code here
+  return width * height
 };
 
 // TODO: Create a function that converts Fahrenheit to Celsius
 // Formula: (fahrenheit - 32) * 5/9
 const fahrenheitToCelsius = (fahrenheit) => {
-  // Your code here
+  return (fahrenheit - 32)
 };
 
 // ========================================
@@ -34,7 +34,13 @@ const fahrenheitToCelsius = (fahrenheit) => {
 // TODO: Create a function that returns the letter grade for a percentage
 // 90-100: 'A', 80-89: 'B', 70-79: 'C', 60-69: 'D', below 60: 'F'
 const getLetterGrade = (percentage) => {
-  // Your code here
+  if (percentage === 90) {
+    return "A"
+  } else if (percentage === 80) {
+    return "B"
+  } else if (percentage === 70) {
+    return "C"
+  }
 };
 
 // TODO: Create a function that checks if a number is even or odd
@@ -116,7 +122,7 @@ const arrayContains = (arr, value) => {
 // ========================================
 // Uncomment these lines to test your functions
 
-/*
+
 console.log("=== Testing Variables and Template Literals ===");
 console.log(greet("Alex", 15)); // "Hello, Alex! You are 15 years old."
 
@@ -148,4 +154,4 @@ console.log(getFirstElement([1, 2, 3])); // 1
 console.log(getLastElement([1, 2, 3])); // 3
 console.log(arrayContains([1, 2, 3], 2)); // true
 console.log(arrayContains([1, 2, 3], 5)); // false
-*/
+
