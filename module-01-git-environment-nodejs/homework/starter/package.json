@@ -1,5 +1,5 @@
 {
-  "name": "starter",
+  "name": "module-01-homework",
   "version": "1.0.0",
   "main": "hello.js",
   "scripts": {
@@ -9,5 +9,5 @@
   "keywords": [],
   "author": "Gordon Jungmeisteris",
   "license": "ISC",
-  "description": ""
+  "description": "Module 01 homework assignment"
 }
