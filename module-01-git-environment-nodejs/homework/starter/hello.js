@@ -9,7 +9,7 @@ const name1 = "Gordon";
 console.log(`My name is ${name1}`);
 
 // TODO: Create a variable called 'today' that gets the current date using new Date(), then print it
-var today = new Date();
+let today = new Date();
 console.log(today);
 
 // TODO: Perform a calculation (any math operation you want) and print the result
