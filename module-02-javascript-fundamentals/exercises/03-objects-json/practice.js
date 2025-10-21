@@ -13,6 +13,8 @@ const fs = require('fs');
 // Returns: { name: "Maya", age: 14, sport: "soccer", level: "beginner" }
 const createStudent = (name, age, sport, level) => {
   // Your code here
+  const person = {name: name, age: age, sport: sport, level: level};
+  return person;
 };
 
 // TODO: Create a function that gets a student's full info as a string
@@ -20,6 +22,14 @@ const createStudent = (name, age, sport, level) => {
 // Example: "Maya is 14 years old and plays soccer at beginner level"
 const getStudentInfo = (student) => {
   // Your code here
+  // const regex = /(\w+) is (\d+) years old and plays at (\w+)level/;
+  // const match = student.match(regex);
+  // let person;
+  // if (match) {
+  //   person = {name: match[1], age: parseInt(match[2]), sport: match[3], level: match[4]}
+  // }
+  // return person;
+  return `${student.name} is ${student.age} years old and plays ${student.sport} at ${student.level} level`;
 };
 
 // TODO: Create a function that updates a student's level
@@ -27,6 +37,8 @@ const getStudentInfo = (student) => {
 // Hint: Use the spread operator (...)
 const updateLevel = (student, newLevel) => {
   // Your code here
+  const updated = createStudent(student.name, student.age, student.sport, newLevel)
+  return updated;
 };
 
 // ========================================
@@ -38,6 +50,7 @@ const updateLevel = (student, newLevel) => {
 // Example: { name: "Alex", sport: "basketball" } -> "Alex plays basketball"
 const getNameAndSport = (student) => {
   // Your code here - use destructuring!
+  return `${student.name} plays ${student.sport}`;
 };
 
 // TODO: Use destructuring with default values
@@ -45,6 +58,8 @@ const getNameAndSport = (student) => {
 // Return an object with just those two properties
 const getNameAndLevel = (student) => {
   // Your code here - use destructuring with defaults!
+  const changed = {name: student.name, level: student.level};
+  return changed;
 };
 
 // TODO: Use nested destructuring to get the instructor's name from a class object
@@ -52,6 +67,7 @@ const getNameAndLevel = (student) => {
 // Return: "Coach Lee"
 const getInstructorName = (classObj) => {
   // Your code here - use nested destructuring!
+  return classObj.instructor.name;
 };
 
 // ========================================
