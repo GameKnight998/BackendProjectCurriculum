@@ -47,11 +47,18 @@ const getLetterGrade = (percentage) => {
 // Return "even" or "odd"
 const evenOrOdd = (number) => {
   // Your code here
+  if (number % 2 === 2) {
+    return "even";
+  } else {
+    return "odd";
+  }
 };
 
 // TODO: Create a function that returns the larger of two numbers
 const max = (a, b) => {
   // Your code here
+  const maxof2 = Math.max(a, b);
+  return maxof2;
 };
 
 // ========================================
@@ -61,16 +68,22 @@ const max = (a, b) => {
 // TODO: Create a function that returns the sum of all numbers in an array
 const sumArray = (numbers) => {
   // Your code here
+  const sum = numbers.reduce((a, cv) => a + cv, 0)
+  return sum;
 };
 
 // TODO: Create a function that returns the count of positive numbers in an array
 const countPositive = (numbers) => {
   // Your code here
+  const positive = numbers.filter((n) => num > 0).length;
+  return positive;
 };
 
 // TODO: Create a function that returns an array of all even numbers from the input
 const filterEven = (numbers) => {
   // Your code here
+  const even = numbers.filter((n) => n % 2 === 0);
+  return even;
 };
 
 // ========================================
@@ -93,6 +106,8 @@ const countLetter = (str, letter) => {
 // Example: reverseString("hello") should return "olleh"
 const reverseString = (str) => {
   // Your code here
+  const reverse = str.split('').reverse().join('');
+  return reverse;
 };
 
 // ========================================

@@ -78,12 +78,18 @@ const getInstructorName = (classObj) => {
 // Return them as an object: { first: student1, second: student2 }
 const getFirstTwo = (students) => {
   // Your code here - use array destructuring!
+  const [first, second] = students;
+  const object = {first, second};
+  return object;
 };
 
 // TODO: Use rest operator to get the first student and all the rest
 // Return: { first: student1, rest: [all other students] }
 const getFirstAndRest = (students) => {
   // Your code here - use array destructuring with rest!
+  const [first, ...rest] = students;
+  const object = {first, rest};
+  return object;
 };
 
 // ========================================
@@ -95,17 +101,25 @@ const getFirstAndRest = (students) => {
 const loadData = () => {
   // Your code here
   // Hint: Use fs.readFileSync() and JSON.parse()
+  const obj = JSON.parse(data.json)
+  return obj;
+
 };
 
 // TODO: Convert a student object to a JSON string
 // Use 2 spaces for indentation to make it readable
 const studentToJSON = (student) => {
   // Your code here - use JSON.stringify()
+  const studentjson = JSON.stringify(student, null, 2);
+  return studentjson;
 };
 
 // TODO: Parse a JSON string and return the object
 const parseStudent = (jsonString) => {
   // Your code here - use JSON.parse()
+  
+  const obj = JSON.parse(jsonstring)
+  return obj;
 };
 
 // ========================================
@@ -116,12 +130,16 @@ const parseStudent = (jsonString) => {
 // Return them as an array
 const getStudentProperties = (student) => {
   // Your code here - use Object.keys()
+  const properties = Object.keys(student);
+  return properties;
 };
 
 // TODO: Get all the values from a student object
 // Return them as an array
 const getStudentValues = (student) => {
   // Your code here - use Object.values()
+  const studentvalues = Object.values(student);
+  return studentvalues;
 };
 
 // TODO: Merge two student objects into one
@@ -129,6 +147,8 @@ const getStudentValues = (student) => {
 // Return a new object (don't modify the originals)
 const mergeStudents = (student1, student2) => {
   // Your code here - use spread operator or Object.assign()
+  const merge = Object.assign({}, student2, student1);
+  return merge;
 };
 
 // ========================================
@@ -137,27 +157,59 @@ const mergeStudents = (student1, student2) => {
 
 // TODO: Load the data.json file and get all student names
 // Return an array of just the names
-const getAllStudentNames = () => {
+const getAllStudentNames = async () => {
+
   // Your code here
   // 1. Load and parse the JSON
   // 2. Map over students to get names
+  const fs = require('fs');
+  try {
+     const data = await fs.readFile('data.json', 'utf8');
+   } catch (error) {
+     console.error('File not found:', error);
+   }
+  const students = JSON.parse(data.json);
+  const names = students.map((s) => s.name);
+  return names;
 };
 
 // TODO: Find a student by name from the data.json file
 // Return the student object, or null if not found
-const findStudentByName = (name) => {
+const findStudentByName = async (name) => {
   // Your code here
   // 1. Load and parse the JSON
   // 2. Use find() to locate the student
+  const fs = require('fs');
+  try {
+     const data = await fs.readFile('data.json', 'utf8');
+   } catch (error) {
+     console.error('File not found:', error);
+   }
+  const students = JSON.parse(data.json);
+  const student = students.find((n) => n === name);
+  return student;
 };
 
 // TODO: Get all students enrolled in a specific class
 // Return an array of student names
-const getStudentsInClass = (className) => {
+const getStudentsInClass = async (className) => {
   // Your code here
   // 1. Load and parse the JSON
   // 2. Filter students by their enrolledClasses array
   // 3. Map to get just the names
+  const fs = require('fs');
+  try {
+     const data = await fs.readFile('data.json', 'utf8');
+   } catch (error) {
+     console.error('File not found:', error);
+   }
+  const students = JSON.parse(data.json);
+  const classes = students.map((student) => {
+    if(student.enrolledClasses.find( (c) => c === className ) !== undefined) {
+      student.name
+    }
+  });
+  return classes;
 };
 
 // ========================================
