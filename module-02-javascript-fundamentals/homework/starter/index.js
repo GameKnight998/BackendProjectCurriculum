@@ -28,8 +28,16 @@ async function loadTodos() {
   // 3. Return the parsed array
   // 4. Handle the case where the file doesn't exist (return empty array)
   // Hint: You can use try/catch to handle file not found errors
-
-  return []; // Placeholder - replace with your implementation
+  const fs = require('fs').promises;
+  // const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
+  // const students = JSON.parse(data);
+  try {
+        const jsonString = await fs.readFile('data.json', 'utf8');
+        const data = JSON.parse(jsonString);
+        return data;
+    } catch (error) {
+        return "";
+    }
 }
 
 /**
@@ -43,8 +51,14 @@ async function saveTodos(todos) {
   //    Use JSON.stringify(todos, null, 2) for readable output
   // 2. Write the JSON string to DATA_FILE using fs.promises.writeFile()
   // Hint: Make sure to await the writeFile call
-
   // Placeholder - add your implementation here
+  const fs = require('fs').promises;
+  try {
+    const jsonString = JSON.stringify(todos, null, 2);
+    return jsonString
+  } catch (error) {
+    throw error;
+  }
 }
 
 /**
@@ -58,8 +72,15 @@ function generateId(todos) {
   // 2. Otherwise, find the maximum ID in the existing todos
   // 3. Return max ID + 1
   // Hint: Use Math.max() with map() to find the highest ID
-
-  return 1; // Placeholder - replace with your implementation
+  // Simple approach: find max id and add 1
+  if (todos.length > 0) {
+  const maxId = todos.length > 0
+    ? Math.max(...todos.map(t => t.id))
+    : 0;
+  const newId = maxId + 1;
+  } else {
+    return 1; // Placeholder - replace with your implementation
+  }
 }
 
 /**
@@ -76,9 +97,13 @@ async function listTodos(filter = 'all') {
   // 3. Display the filtered todos in a readable format
   //    Example: "[1] Buy groceries (active) - Created: 2025-01-15"
   // 4. If no todos match, display a helpful message
-
-  console.log('Todo list (placeholder):');
-  console.log('- Implement the listTodos function');
+  let todos = loadTodos();
+  const filtered = todos.filter(t => t.status === filter);
+  if (filtered.length > 0) {
+    filter.map(f => console.log(`[${f.id}] ${f.title} (${f.status}) - Created: ${f.createdAt}`));
+  } else {
+    console.log('No todos match');
+  }
 }
 
 /**
@@ -98,6 +123,17 @@ async function addTodo(title) {
   // 4. Add the new todo to the array
   // 5. Save the updated todos array
   // 6. Display a success message with the new todo's ID
+  if (title.length > 0) {
+    let todos = loadTodos();
+    const Id = generateId();
+    const date = new Date().toISOString();
+    todos.push({id: Id, title: title, status: 'active', createdAt: date});
+    saveTodos(todos);
+    console.log("Success");
+
+  } else {
+      console.log("title must not be empty")
+  }
 
   console.log('Add todo (placeholder): ' + title);
   console.log('- Implement the addTodo function');
@@ -116,9 +152,22 @@ async function completeTodo(id) {
   // 4. Update the todo's status to 'completed'
   // 5. Save the updated todos array
   // 6. Display a success message
+  let todos = loadTodos();
+  const intID = parseInt(id);
+  if (todos.find(t => t.id === intID)) {
+    const updated = todos.map(t =>
+    t.id === intID ? { ...t, status: 'completed' } : t
+    );
+    saveTodos(updated);
+    console.log("Success")
+  } else {
+    console.log("Not found");
+  }
 
-  console.log('Complete todo (placeholder): ' + id);
-  console.log('- Implement the completeTodo function');
+
+
+  // console.log('Complete todo (placeholder): ' + id);
+  // console.log('- Implement the completeTodo function');
 }
 
 /**
@@ -135,6 +184,16 @@ async function deleteTodo(id) {
   //    Hint: Use array.splice() or array.filter()
   // 5. Save the updated todos array
   // 6. Display a success message
+  let todos = loadTodos();
+  const intID = parseInt(id);
+  if (todos.find(t => t.id === intID)) {
+    const filtered = todos.filter(f => f.id !== intID);
+    saveTodos(filtered);
+    console.log("Success")
+  } else {
+    console.log("Not found");
+  }
+
 
   console.log('Delete todo (placeholder): ' + id);
   console.log('- Implement the deleteTodo function');

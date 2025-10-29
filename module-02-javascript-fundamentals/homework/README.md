@@ -2,6 +2,8 @@
 
 ## Assignment Overview
 
+//skip async, instead of doing this, do first 3 exercises
+
 Build a command-line todo manager that stores todos in a JSON file. This project combines everything you've learned: functions, arrays, objects, JSON, and async file operations.
 
 **Difficulty:** ⭐⭐
