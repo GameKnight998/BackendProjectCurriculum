@@ -32,7 +32,7 @@ async function loadTodos() {
   // const data = JSON.parse(fs.readFileSync('data.json', 'utf8'));
   // const students = JSON.parse(data);
   try {
-        const jsonString = await fs.readFile('data.json', 'utf8');
+        const jsonString = await fs.readFile(DATA_FILE, 'utf8');
         const data = JSON.parse(jsonString);
         return data;
     } catch (error) {
@@ -55,7 +55,7 @@ async function saveTodos(todos) {
   const fs = require('fs').promises;
   try {
     const jsonString = JSON.stringify(todos, null, 2);
-    return jsonString
+    await fs.writeFile(DATA_FILE, jsonString, 'utf-8')
   } catch (error) {
     throw error;
   }
@@ -97,10 +97,10 @@ async function listTodos(filter = 'all') {
   // 3. Display the filtered todos in a readable format
   //    Example: "[1] Buy groceries (active) - Created: 2025-01-15"
   // 4. If no todos match, display a helpful message
-  let todos = loadTodos();
+  let todos = await loadTodos();
   const filtered = todos.filter(t => t.status === filter);
   if (filtered.length > 0) {
-    filter.map(f => console.log(`[${f.id}] ${f.title} (${f.status}) - Created: ${f.createdAt}`));
+    filtered.forEach(f => console.log(`[${f.id}] ${f.title} (${f.status}) - Created: ${f.createdAt}`));
   } else {
     console.log('No todos match');
   }
@@ -124,7 +124,7 @@ async function addTodo(title) {
   // 5. Save the updated todos array
   // 6. Display a success message with the new todo's ID
   if (title.length > 0) {
-    let todos = loadTodos();
+    let todos = await loadTodos();
     const Id = generateId();
     const date = new Date().toISOString();
     todos.push({id: Id, title: title, status: 'active', createdAt: date});
@@ -153,7 +153,7 @@ async function completeTodo(id) {
   // 5. Save the updated todos array
   // 6. Display a success message
   let todos = loadTodos();
-  const intID = parseInt(id);
+  const intID = Number(id);
   if (todos.find(t => t.id === intID)) {
     const updated = todos.map(t =>
     t.id === intID ? { ...t, status: 'completed' } : t
@@ -184,7 +184,7 @@ async function deleteTodo(id) {
   //    Hint: Use array.splice() or array.filter()
   // 5. Save the updated todos array
   // 6. Display a success message
-  let todos = loadTodos();
+  let todos = await loadTodos();
   const intID = parseInt(id);
   if (todos.find(t => t.id === intID)) {
     const filtered = todos.filter(f => f.id !== intID);

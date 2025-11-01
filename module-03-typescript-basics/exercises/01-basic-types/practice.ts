@@ -21,12 +21,12 @@ console.log(`Student: ${studentName}, Age: ${studentAge}, Enrolled: ${isEnrolled
 // ==========================================
 
 // TODO: Add type annotations to these variables
-const classPrice = 49.99;
-const maxStudents = 12;
-const currentEnrollment = 8;
+const classPrice: number = 49.99;
+const maxStudents: number = 12;
+const currentEnrollment: number = 8;
 
 // Calculate available spots
-const availableSpots = maxStudents - currentEnrollment;
+const availableSpots: number = maxStudents - currentEnrollment;
 console.log(`Available spots: ${availableSpots} out of ${maxStudents}`);
 
 // ==========================================
@@ -34,13 +34,13 @@ console.log(`Available spots: ${availableSpots} out of ${maxStudents}`);
 // ==========================================
 
 // TODO: Add type annotation for array of student names
-const studentNames = ["Alex", "Jordan", "Casey", "Riley"];
+const studentNames:string[] = ["Alex", "Jordan", "Casey", "Riley"];
 
 // TODO: Add type annotation for array of test scores
-const testScores = [95, 87, 92, 88, 90];
+const testScores:number[] = [95, 87, 92, 88, 90];
 
 // TODO: Add type annotation for array of flags
-const attendanceRecord = [true, true, false, true, true];
+const attendanceRecord:boolean[] = [true, true, false, true, true];
 
 console.log(`Number of students: ${studentNames.length}`);
 console.log(`First student: ${studentNames[0]}`);
@@ -57,13 +57,13 @@ const inferredBoolean = false; // TypeScript knows this is a boolean
 
 // TODO: Declare these variables with EXPLICIT types (don't assign value yet)
 // Then assign the value on the next line
-let schoolName;
+let schoolName:string;
 schoolName = "Springfield Middle School";
 
-let numberOfClasses;
+let numberOfClasses:number;
 numberOfClasses = 5;
 
-let hasGym;
+let hasGym:boolean;
 hasGym = true;
 
 console.log(`${schoolName} offers ${numberOfClasses} classes`);
@@ -73,11 +73,11 @@ console.log(`${schoolName} offers ${numberOfClasses} classes`);
 // ==========================================
 
 // TODO: Add type annotation that allows this to be a string OR null
-let parentEmail = null;
+let parentEmail: string | null = null;
 parentEmail = "parent@example.com";
 
 // TODO: Add type annotation that allows this to be a number OR undefined
-let phoneNumber = undefined;
+let phoneNumber: number | undefined;
 phoneNumber = 5551234;
 
 console.log(`Parent email: ${parentEmail}`);
@@ -90,10 +90,10 @@ console.log(`Phone: ${phoneNumber}`);
 // TODO: Fix the type errors below by changing the VALUES (not the types)
 // Each variable has a type annotation, but the value doesn't match
 
-const studentId: number = "12345"; // Fix: should be a number
-const className: string = 101; // Fix: should be a string
-const isPaid: boolean = "true"; // Fix: should be a boolean
-const grades: number[] = [90, 85, "92", 88]; // Fix: all elements should be numbers
+const studentId: number = 12345; // Fix: should be a number
+const className: string = "101"; // Fix: should be a string
+const isPaid: boolean = true; // Fix: should be a boolean
+const grades: number[] = [90, 85, 92, 88]; // Fix: all elements should be numbers
 
 // ==========================================
 // SECTION 7: Practical Example
@@ -102,15 +102,15 @@ const grades: number[] = [90, 85, "92", 88]; // Fix: all elements should be numb
 // Sports coaching platform student data
 // TODO: Add appropriate type annotations to all variables below
 
-const coachName = "Coach Taylor";
-const sport = "Basketball";
-const yearsExperience = 15;
-const isHeadCoach = true;
-const specializations = ["Defense", "Shooting", "Conditioning"];
-const rating = 4.8;
+const coachName:string = "Coach Taylor";
+const sport:string = "Basketball";
+const yearsExperience:number = 15;
+const isHeadCoach:boolean = true;
+const specializations:string[] = ["Defense", "Shooting", "Conditioning"];
+const rating:number = 4.8;
 
 // TODO: Add type annotation for this array of student IDs
-const enrolledStudents = [1001, 1002, 1003, 1004, 1005];
+const enrolledStudents:number[] = [1001, 1002, 1003, 1004, 1005];
 
 console.log("\n=== Coach Profile ===");
 console.log(`Name: ${coachName}`);

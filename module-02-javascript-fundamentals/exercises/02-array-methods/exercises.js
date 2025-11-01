@@ -83,6 +83,9 @@ const getHighGrades = (students) => {
 // Expected: 55 (1+2+3+...+10)
 const sumNumbers = (nums) => {
   // Your code here
+  return nums.reduce((accumulator, current) => {
+  return accumulator + current;
+}, 0);
 };
 
 // TODO: Use reduce to find the maximum number

@@ -94,6 +94,7 @@ const filterEven = (numbers) => {
 // Example: capitalize("hello") should return "Hello"
 const capitalize = (str) => {
   // Your code here
+  
 };
 
 // TODO: Create a function that counts how many times a letter appears in a string

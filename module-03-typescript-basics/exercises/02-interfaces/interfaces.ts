@@ -13,14 +13,27 @@
 // - phoneNumber: string (OPTIONAL - use ? to make it optional)
 
 // Your interface here:
-
+interface User {
+  id: number,
+  firstName: string,
+  lastname: string,
+  email: string,
+  role: "student" | "parent" | "instructor" | "admin",
+  phoneNumber?: string,
+}
 // ==========================================
 // SECTION 2: Create User Objects
 // ==========================================
 
 // TODO: Create a student user object that matches the User interface
-const student = {
+const student: User = {
   // Fill in the properties
+  id: 2,
+  firstName: "Joe",
+  lastname: "Smith",
+  email: "joe.smith@gmail.com",
+  role: "student",
+  phoneNumber:
 };
 
 // TODO: Create an instructor user object that matches the User interface

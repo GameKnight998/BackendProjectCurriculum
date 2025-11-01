@@ -221,6 +221,7 @@ const getStudentsInClass = async (className) => {
 const getDataSummary = () => {
   // Your code here
   // Hint: Load data, count students/classes, get unique sports
+
 };
 
 // TODO: Get the average age of all students
@@ -270,7 +271,7 @@ const createReportCard = (student) => {
 // TEST YOUR FUNCTIONS
 // ========================================
 
-/*
+
 console.log('=== Object Basics ===');
 const maya = createStudent("Maya", 14, "soccer", "beginner");
 console.log('Created student:', maya);
@@ -326,4 +327,4 @@ const reportData = {
   skillLevel: 4
 };
 console.log('Report card:', createReportCard(reportData));
-*/
+

@@ -11,6 +11,11 @@
 
 export interface Task {
   // Your properties here
+  id: number;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+  completedAt?: string;
 }
 
 // TODO: Define the TaskManager interface
@@ -20,6 +25,8 @@ export interface Task {
 
 export interface TaskManager {
   // Your properties here
+  tasks: Task[];
+  nextId: number;
 }
 
 // BONUS: If you want to add more types, you can define them here

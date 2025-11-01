@@ -13,6 +13,14 @@ const path = require('path');
 // If negative, reject with "Negative numbers not allowed"
 const checkPositive = (num) => {
   // Your code here - return a new Promise
+  return new Promise((resolve, reject) => {
+    if (num >= 0) {
+      resolve(`Postive: ${num}`)
+    }
+    else {
+      reject("Negative numbers not allowed")
+    }
+  })
 };
 
 // TODO: Create a delay function that resolves after a given number of milliseconds
@@ -21,12 +29,24 @@ const checkPositive = (num) => {
 const delay = (ms) => {
   // Your code here - return a Promise that resolves after ms milliseconds
   // Hint: Use setTimeout inside the Promise
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, ms)
+  })
 };
 
 // TODO: Create a function that simulates fetching user data
 // After 500ms, resolve with an object: { id, name, age }
 const fetchUser = (id) => {
   // Your code here - use delay and return user data
+  //return new promise
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+    resolve({id: 1, name: 'tyler', age: 36});
+
+  }, 500)
+})
 };
 
 // ========================================
@@ -37,6 +57,9 @@ const fetchUser = (id) => {
 // Return "Success: {result}" if positive, "Error: {error}" if negative
 const handleCheckPositive = (num) => {
   // Your code here - use .then() and .catch()
+  checkPositive(num)
+    .then((result) => `Success: ${result}`)
+    .catch((error) => `Error: ${error}`)
 };
 
 // TODO: Chain multiple Promises together
@@ -45,6 +68,9 @@ const handleCheckPositive = (num) => {
 // Use .then() chaining (not async/await)
 const getUserInfo = (id) => {
   // Your code here - use .then() chaining
+  userInfo(id)
+    .then((info) => `User ${info.name} is ${info.age} years old`)
+    .catch((err) => `Error: ${error}`)
 };
 
 // ========================================
@@ -55,17 +81,36 @@ const getUserInfo = (id) => {
 // Use try/catch for error handling
 const handleCheckPositiveAsync = async (num) => {
   // Your code here - use async/await with try/catch
+  try {
+    let result = await checkPositive(num);
+    return `Success: ${result}`
+
+  }
+  catch (error) {
+    return `Error: ${error}`
+  }
+
 };
 
 // TODO: Convert getUserInfo to use async/await instead of .then()
 const getUserInfoAsync = async (id) => {
   // Your code here - use async/await
+  try {
+    let info = await userInfo(id)
+    return `User ${info.name} is ${info.age} years old`
+  }
+  catch (err) {
+      return `Error: ${err}`
+  }
 };
 
 // TODO: Create an async function that waits 1 second then returns a greeting
 // Use the delay function you created earlier
 const asyncGreeting = async (name) => {
   // Your code here
+  await delay(1000);
+  return "greetings"
+
 };
 
 // ========================================
@@ -77,6 +122,13 @@ const asyncGreeting = async (name) => {
 // Hint: Use fs.readFile() from the fs.promises module
 const readFileAsync = async (filePath) => {
   // Your code here
+  try {
+    let file = await fs.readFile(filePath)
+    return file
+  }
+  catch(err) {
+    return `Error: ${err}`
+  }
 };
 
 // TODO: Read the data.json file from the previous exercise
@@ -88,6 +140,14 @@ const loadStudentData = async () => {
   // 2. Read the file
   // 3. Parse the JSON
   // 4. Return the object
+  try {
+    let file = fs.readFile("../03-objects-json/data.json")
+    let object = await JSON.parse(file)
+    return object
+  }
+  catch(err) {
+    return `Error: ${err}`
+  }
 };
 
 // TODO: Read a file that might not exist
@@ -95,6 +155,12 @@ const loadStudentData = async () => {
 // Don't let the error crash the program
 const safeReadFile = async (filePath) => {
   // Your code here - use try/catch to handle the error
+  try {
+    let file = fs.readFile(filePath)
+  }
+  catch(err) {
+    return `Error: ${err}`
+  }
 };
 
 // ========================================
@@ -108,6 +174,11 @@ const writeJSONFile = async (filePath, data) => {
   // 1. Convert data to JSON string
   // 2. Write to file using fs.writeFile()
   // 3. Return true if successful, false if error
+  try {
+    let jsonString = JSON.stringify(data);
+    await fs.writeFile(filePath, jsonString, 2)
+
+  }
 };
 
 // TODO: Append a message to a log file
